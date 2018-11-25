@@ -9,8 +9,5 @@
         <module name="SDAEUR_1" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="SDAEUR_1" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
