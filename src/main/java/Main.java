@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class Main {
 
     //CONSTANTS
     //private static String FILE = "C:\\Users\\Kodiak\\Documents\\medizin.csv";
-    private static String FILE; // = "/Users/kodiak/Documents/medizin.csv";
+    private static String file = "./src/main/resources/Textdatei/medizin.csv";
     //private static String FILE = "/Users/louisadort/Desktop/Robin_Uni/EuRusD/medizin.csv";
     private String LINE = "-----------------------";
     private String ERR_TABLE_NOT_LOADED = "Tabelle muss erst geladen werden!";
@@ -36,12 +37,11 @@ public class Main {
      * constructor
      */
     public Main() {
-        tr = new Tablereader(FILE);
+        tr = new Tablereader(file);
     }
 
 
     public static void main(String[] args){
-        FILE = System.getProperty("user.dir") + "/medizin.csv";
         Main main = new Main();
         main.startLoop();
     }
@@ -330,7 +330,7 @@ public class Main {
                 System.out.println("Pfad = ");
                 String path = scanner.next();
                 if(path != ""){
-                    this.FILE = path;
+                    this.file = path;
                 }else {
                     System.out.println("Pfad ungültig; wurde nicht geändert!");
                 }
@@ -568,5 +568,4 @@ public class Main {
             return  false;
         }
     }
-
 }

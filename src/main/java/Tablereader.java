@@ -45,8 +45,9 @@ public class Tablereader {
 
 
 
+
     public Tablereader(String path){
-        file = new File(path);
+        this.file = new File(path);
     }
 
 
