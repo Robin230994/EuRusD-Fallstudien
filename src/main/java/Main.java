@@ -13,7 +13,7 @@ public class Main {
 
     //CONSTANTS
     //private static String FILE = "C:\\Users\\Kodiak\\Documents\\medizin.csv";
-    private static String FILE = "/Users/kodiak/Documents/medizin.csv";
+    private static String FILE; // = "/Users/kodiak/Documents/medizin.csv";
     //private static String FILE = "/Users/louisadort/Desktop/Robin_Uni/EuRusD/medizin.csv";
     private String LINE = "-----------------------";
     private String ERR_TABLE_NOT_LOADED = "Tabelle muss erst geladen werden!";
@@ -38,6 +38,7 @@ public class Main {
 
 
     public static void main(String[] args){
+        FILE = System.getProperty("user.dir") + "/medizin.csv";
         Main main = new Main();
         main.startLoop();
     }
