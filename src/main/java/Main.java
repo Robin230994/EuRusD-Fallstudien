@@ -32,6 +32,9 @@ public class Main {
     private final String DISCREETDATA = "GESCHLECHT,BG,DZ";
 
 
+    /**
+     * constructor
+     */
     public Main() {
         tr = new Tablereader(FILE);
     }
