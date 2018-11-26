@@ -4,6 +4,7 @@ import java.util.Map;
 
 public class Tablereader {
 
+    // NORMAL VARIABLES
     private String[][] table;
     private String[] head;
     private String[] tmp;
@@ -11,6 +12,7 @@ public class Tablereader {
     private int rowcount;
     File file;
 
+    // COUNT VARIABLES
     private double minWeight = 0.0;
     private double maxWeight = 0.0;
     private double minAge = 0.0;
@@ -31,6 +33,7 @@ public class Tablereader {
     private int anzDZ2 = 0;
     private int anzDZ3 = 0;
 
+    // FINAL VARIABLES
     private final int firstValue = 0;
     private final int lastValue = 29;
     private final int GESCHLECHT = 1;
@@ -43,14 +46,20 @@ public class Tablereader {
     private final int DIF = 10;
 
 
-
-
-
+    /**
+     * constructor
+     * @param path path to the file that will be read
+     */
     public Tablereader(String path){
         this.file = new File(path);
     }
 
 
+    /**
+     * method that reads our medicine file and sets the different variables to calculate with them
+     * @return the read table of our file
+     * @throws IOException
+     */
     public Table read() throws IOException {
 
         int[] res = getResolution();
@@ -189,6 +198,11 @@ public class Tablereader {
         return tb;
     }
 
+    /**
+     * method that calculates the needed array size
+     * @return the calculated size
+     * @throws IOException
+     */
     private int[] getResolution() throws IOException {
 
         int[] res = new int[2];
@@ -208,6 +222,9 @@ public class Tablereader {
         return res;
     }
 
+    /**
+     * set and get methods
+     */
     private void setColoumnCount(int count) {
         this.count = count;
     }

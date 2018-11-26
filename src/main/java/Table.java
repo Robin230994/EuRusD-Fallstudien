@@ -7,7 +7,7 @@ public class Table {
 
     /**
      * constructors
-     * class sets the head of our medicine file into the head array and the content columns of our file into the content array 
+     * class sets the head of our medicine file into the head array and the content columns of our file into the content array
      */
     public Table(){}
 
