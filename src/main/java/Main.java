@@ -17,7 +17,7 @@ public class Main {
     private static String file = "./src/main/resources/Textdatei/medizin.csv";
     //private static String FILE = "/Users/louisadort/Desktop/Robin_Uni/EuRusD/medizin.csv";
     private String LINE = "-----------------------";
-    private String ERR_TABLE_NOT_LOADED = "Tabelle muss erst geladen werden!";
+    private final String ERR_TABLE_NOT_LOADED = "Tabelle muss erst geladen werden!";
 
     //VARIABLES
     private String[] head;
@@ -661,7 +661,7 @@ public class Main {
 
     /**
      * method that checks if the table is already loaded
-     * @return true if it is loaded / false otherwise 
+     * @return true if it is loaded / false otherwise
      */
     private boolean tableIsNotLoaded(){
         if (this.content == null && this.head == null){
