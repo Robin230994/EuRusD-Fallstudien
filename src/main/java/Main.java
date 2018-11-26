@@ -42,7 +42,7 @@ public class Main {
 
 
     /**
-     * main method to start the programm
+     * main method to start the programdda
      * @param args
      */
     public static void main(String[] args){
