@@ -41,33 +41,47 @@ public class Main {
     }
 
 
+    /**
+     * main method to start the programm
+     * @param args
+     */
     public static void main(String[] args){
         Main main = new Main();
         main.startLoop();
     }
 
-    private void startLoop(){
+    /**
+     * first method which gets called to start the loop
+     */
+    private void startLoop()  {
         scanner = new Scanner(System.in);
         int x = 0;
-        while (x == 0) {
-            System.out.println("Bitte Eingabe machen:");
-            System.out.println("[1] Tabellenoptionen");
-            System.out.println("[2] Arithmetisches Mittel");
-            System.out.println("[3] Median");
-            System.out.println("[4] Spannweite");
-            System.out.println("[5] Modus");
-            System.out.println("[6] Streuung");
-            System.out.println("[7] Standartabweichung");
-            System.out.println("[8] Alpha-Quartile");
-            System.out.println("[9] Klassenbreite");
-            System.out.println("[0] Beenden");
-            System.out.println("Selection: ");
-            int selection = scanner.nextInt();
+            while (x == 0) {
 
-           x = mainSwitcher(selection);
-        }
+                System.out.println("Bitte Eingabe machen:");
+                System.out.println("[1] Tabellenoptionen");
+                System.out.println("[2] Arithmetisches Mittel");
+                System.out.println("[3] Median");
+                System.out.println("[4] Spannweite");
+                System.out.println("[5] Modus");
+                System.out.println("[6] Streuung");
+                System.out.println("[7] Standartabweichung");
+                System.out.println("[8] Alpha-Quartile");
+                System.out.println("[9] Klassenbreite");
+                System.out.println("[0] Beenden");
+                System.out.println("Selection: ");
+                int selection = scanner.nextInt();
+
+                x = mainSwitcher(selection);
+            }
+
     }
 
+    /**
+     * method that runs different methods depending on what the user has tipped in the loop before
+     * @param selection the user input that was given
+     * @return the x variable -> x = 1 the menu will close
+     */
     private int mainSwitcher(int selection){
         int x = 0;
         switch (selection) {
@@ -133,6 +147,10 @@ public class Main {
         return x;
     }
 
+    /**
+     * method that asks the user which data type he wants to interact with
+     * depending on what he chooses a different menu will be displayed after
+     */
     private void chooseDataType() {
         scanner = new Scanner(System.in);
         int x = 0;
@@ -154,6 +172,9 @@ public class Main {
         }
     }
 
+    /**
+     * method that displays the menu for the discreet data
+     */
     private void menueFrequencyTableDiscreet() {
         int selection = 0;
         int x = 0;
@@ -175,6 +196,9 @@ public class Main {
         }
     }
 
+    /**
+     * method that displays the menu for the steady data
+     */
     private void menueFrequencyTableSteady() {
         int x = 0;
         while (x == 0) {
@@ -194,6 +218,12 @@ public class Main {
         }
     }
 
+    /**
+     * method that calls the FrequencyDiscreetTable class
+     * depending on what input was given a different array size and classification will be called in that class
+     * @param selection the input the user has given before
+     * @return the x variable -> x = 1 the menu will close
+     */
     private int showDT(int selection) {
         FrequencyDiscreetTable fdt = new FrequencyDiscreetTable();
         String[] vals;
@@ -235,7 +265,11 @@ public class Main {
         return x;
     }
 
-
+    /**
+     * method that calls a method with different parameters depending on what the user has typed in before
+     * @param selection the input that was given
+     * @return the x variable -> x = 1 the menu will close
+     */
     private int scSteadyTable(int selection) {
         int x = 0;
         int classification = 0;
@@ -278,6 +312,9 @@ public class Main {
         return x;
     }
 
+    /**
+     * method that shows a table menu after table options has been called in the menu before
+     */
     private void tableOptions(){
         int x = 0;
         while (x == 0) {
@@ -293,6 +330,11 @@ public class Main {
         }
     }
 
+    /**
+     * method that asks the user how many decimals he wants to display
+     * depending on what he chooses a different result in the calculations will be displayed
+     * @return the amount of decimals the user has been choose (1-5)
+     */
     private int setDecimal() {
         int amount = 0;
         int x = 0;
@@ -309,6 +351,11 @@ public class Main {
         return amount;
     }
 
+    /**
+     * method that calls a different method depending on what the user has typed in in the table options menu
+     * @param selection the input the user has given
+     * @return the x variable -> x = 1 the menu will close
+     */
     private int scTableOptions(int selection){
         int x = 0;
         switch (selection) {
@@ -343,6 +390,9 @@ public class Main {
         return x;
     }
 
+    /**
+     * method that calls the median method in our Core class
+     */
     private void opMedian(){
         Double result;
         System.out.println("Spalte = ");
@@ -355,6 +405,9 @@ public class Main {
         System.out.println("-----------------------");
     }
 
+    /**
+     * method that calls the arithmeticMean method in our Core class
+     */
     private void opArithmeticMean(){
         Double result;
         System.out.println("Spalte = ");
@@ -368,6 +421,9 @@ public class Main {
         System.out.println(LINE);
     }
 
+    /**
+     * method that calls the spanRange method in our Core class
+     */
     private void opSpanRange() {
         Double result;
         System.out.println("Spalte = ");
@@ -385,6 +441,9 @@ public class Main {
         }
     }
 
+    /**
+     * method that calls the var method in our Core class (spread)
+     */
     //Streuung
     private void opSpread() {
         Double result;
@@ -400,6 +459,9 @@ public class Main {
 
     }
 
+    /**
+     * method that calls the stddv method in our Core class (standard deviation)
+     */
     //Streuung
     private void opStandardDeviation() {
         Double result;
@@ -415,6 +477,9 @@ public class Main {
 
     }
 
+    /**
+     * method that calls the quartile method in our Core class
+     */
     //Quartile
     private void opQuartile() {
         Double result;
@@ -437,6 +502,9 @@ public class Main {
 
     }
 
+    /**
+     * method that calls the mode method in our Core class
+     */
     private void opMode() {
         String result;
         System.out.println("Spalte = ");
@@ -454,6 +522,10 @@ public class Main {
         }
     }
 
+    /**
+     * method that calculates the classification of our table in the medicine file
+     * @return the calculated classification
+     */
     private int classification() {
         int coloumnCount = tr.getColoumncount();
         double classification = (Math.sqrt(coloumnCount));
@@ -463,6 +535,12 @@ public class Main {
         return roundedClassification;
     }
 
+    /**
+     * method that calculates the class width from a specific table column in our medicine file
+     * @param classifcation the given calculated classification
+     * @param amountDecimal the amount of decimals the user has been choose
+     * @return the calculated class with of the table column
+     */
     private double classWidth(int classifcation, int amountDecimal) {
         int k = classification();
         double minValue = 0.0;
@@ -492,6 +570,12 @@ public class Main {
         return roundedB;
     }
 
+    /**
+     * method that calls the FrequencySteadyTable class
+     * depending on what input was given a different class width and classification will be called in that class
+     * @param classSpread the given class width
+     * @param classifcation the calculated classification
+     */
     private void showST(double classSpread, int classifcation){
         scanner = new Scanner(System.in);
         ArrayConverter ac = new ArrayConverter();
@@ -509,6 +593,12 @@ public class Main {
         }
     }
 
+    /**
+     * method that displays a Bar chart to a specific table column
+     * @param title the title of the bar chart
+     * @param labels intervals
+     * @param values the data that will be displayed as a bar chart
+     */
     private void showBarChart(String title, String[] labels, double[] values){
         setSystemUI();
         //JFrame.setDefaultLookAndFeelDecorated(true);
@@ -521,6 +611,9 @@ public class Main {
         frame.setVisible(true);
     }
 
+    /**
+     * method for windows to set window to the systems UI
+     */
     private void setSystemUI(){
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -529,6 +622,9 @@ public class Main {
         }
     }
 
+    /**
+     * method that reads the medicine file
+     */
     private void readTable(){
         tb = new Table();
         try {
@@ -541,6 +637,9 @@ public class Main {
         content = tb.getContent();
     }
 
+    /**
+     * method that displays the table in the console
+     */
     private void printTable(){
         String header = "";
         String conLine  = "";
@@ -560,6 +659,10 @@ public class Main {
         }
     }
 
+    /**
+     * method that checks if the table is already loaded
+     * @return true if it is loaded / false otherwise 
+     */
     private boolean tableIsNotLoaded(){
         if (this.content == null && this.head == null){
             System.out.println(ERR_TABLE_NOT_LOADED);

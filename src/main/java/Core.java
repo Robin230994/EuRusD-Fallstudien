@@ -13,17 +13,6 @@ public class Core {
         return  result;
     }
 
-    public double arithmeticMean(double[] vals) {
-        double[] arr = vals;
-        double result = 0;
-
-        for(int i = 0; i < arr.length; i++) {
-            result += arr[i];
-        }
-        result = result / arr.length;   //Changed!
-
-        return  result;
-    }
 
     public double median(String[] arr){
         double result;
