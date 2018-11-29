@@ -387,8 +387,7 @@ public class Main {
         System.out.println("Option: " + opName);
         for (String val:arr) {
             result = null;
-            if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
-                System.out.println("Spalte: " + this.head[Integer.valueOf(val)]);
+            System.out.println("Spalte: " + this.head[Integer.valueOf(val)]);
             tmp = tb.getRow(Integer.valueOf(val));
             if(op == OP_ARI_MEAN){
                 if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
@@ -414,8 +413,7 @@ public class Main {
                     result = String.valueOf(core.quartile(tmp, classWidth));
                 }
             }
-            if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
-                System.out.println("Ergebnis: " + result);
+            System.out.println("Ergebnis: " + result);
 
         }
         System.out.println(LINE);
