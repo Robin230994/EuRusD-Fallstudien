@@ -92,7 +92,7 @@ public class FrequencyDiscreetTable {
     /**
      * method to sort our array with a simple bubble sort
      * @param stringArray the String array which will be sorted
-     * @return the sorted array 
+     * @return the sorted array
      */
     public String[] bubbleSort(String[] stringArray) {
     int n = stringArray.length-1;
