@@ -17,6 +17,7 @@ public class Main {
     //private static String FILE = "C:\\Users\\Kodiak\\Documents\\medizin.csv";
     //private static String FILE = "/Users/louisadort/Desktop/Robin_Uni/EuRusD/medizin.csv";
     private String LINE = "-----------------------";
+    private String file = "./medizin.csv";
     private final String ERR_TABLE_NOT_LOADED = "Tabelle muss erst geladen werden!";
 
     private PropertiesModel propertiesModel;
@@ -54,7 +55,7 @@ public class Main {
             e.printStackTrace();
         }
         propertiesModel = new PropertiesModel();
-        tr = new Tablereader(propertiesModel.getFilepath());
+        tr = new Tablereader(file);
     }
 
 
