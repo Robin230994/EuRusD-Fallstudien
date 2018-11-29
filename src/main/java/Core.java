@@ -1,5 +1,10 @@
 public class Core {
 
+    /**
+     * method to calculate the arithmetic mean for some column of our table
+     * @param vals the String array which contains the data to calculate with
+     * @return the arithmetic mean
+     */
     public double arithmeticMean(String[] vals) {
         ArrayConverter converter = new ArrayConverter();
         double[] arr = converter.makeDouble(vals);
@@ -14,6 +19,11 @@ public class Core {
     }
 
 
+    /**
+     * method to calculate the median for some column of our table
+     * @param arr the String array which contains the data to calculate with
+     * @return the median
+     */
     public double median(String[] arr){
         double result;
         int length;
@@ -36,6 +46,11 @@ public class Core {
         return  result;
     }
 
+    /**
+     * method to calculate the median with a double array
+     * @param arr the given double array which contains the data
+     * @return the median
+     */
     public double median(double[] arr){
         double result;
         int length;
@@ -57,6 +72,11 @@ public class Core {
         return  result;
     }
 
+    /**
+     * method to calculate the span range for some column of our table
+     * @param vals the String array which contains the data to calculate with
+     * @return the span range
+     */
     public double spanRange(String[] vals) {
         ArrayConverter converter = new ArrayConverter();
         double span = 0.0;
@@ -66,6 +86,11 @@ public class Core {
         return span;
     }
 
+    /**
+     * method to calculate the mode for some column of our table
+     * @param a the array which contains the data to calculate with
+     * @return the mode
+     */
     public  String mode(String a[]) {
         String maxValue = "";
         int maxCount = 0;
@@ -85,11 +110,17 @@ public class Core {
         return maxValue;
     }
 
+
     // Berechnet die Standardabweichung
     public double stddv(String[] a) {
         return Math.sqrt(var(a));
     }
 
+    /**
+     * method to calculate the spread for some column row of our table
+     * @param var the String array which contains the data to calculate with
+     * @return the spread
+     */
     // Berechnet die korrigierte Stichprobenvarianz
     public double var(String[] var) {
         ArrayConverter ac = new ArrayConverter();
@@ -102,20 +133,12 @@ public class Core {
         return sum / (a.length - 1);
     }
 
-    public double var2(String[] var) {
-        ArrayConverter ac = new ArrayConverter();
-        double[] a = ac.makeDouble(var);
-        double m = median(a);
-        double sum = 0.0;
-        for (int i = 0; i < a.length; i++) {
-            //sum += Math.pow(a[i], 2) - a.length * Math.pow(m, 2);
-            sum += Math.pow(a[i] - m, 2);
-        }
-        int len = a.length-1;
-        sum = sum/len;
-        return sum ;
-    }
-
+    /**
+     * method to calculate the quartile for some column of our table
+     * @param var the String array which contains the data
+     * @param classWidth the classwidth you calculated before
+     * @return the quartile 
+     */
     public double quartile(String[] var, double classWidth) { //, int lowerPercent, int upperPercent
 
         ArrayConverter ac = new ArrayConverter();

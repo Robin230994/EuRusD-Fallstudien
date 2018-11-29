@@ -1,3 +1,5 @@
+import Models.PropertiesModel;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -13,10 +15,11 @@ public class Main {
 
     //CONSTANTS
     //private static String FILE = "C:\\Users\\Kodiak\\Documents\\medizin.csv";
-    private static String file = "./src/main/resources/Textdatei/medizin.csv";
     //private static String FILE = "/Users/louisadort/Desktop/Robin_Uni/EuRusD/medizin.csv";
     private String LINE = "-----------------------";
     private final String ERR_TABLE_NOT_LOADED = "Tabelle muss erst geladen werden!";
+
+    private PropertiesModel propertiesModel;
 
     private final int OP_ARI_MEAN = 0;
     private final int OP_MEDIAN = 1;
@@ -45,7 +48,13 @@ public class Main {
      * constructor
      */
     public Main() {
-        tr = new Tablereader(file);
+        try {
+            PropertiesModel.init("./properties.xml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        propertiesModel = new PropertiesModel();
+        tr = new Tablereader(propertiesModel.getFilepath());
     }
 
 

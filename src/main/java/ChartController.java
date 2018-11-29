@@ -10,17 +10,26 @@ public class ChartController extends JPanel {
 
         private double[] values;
         private String[] labels;
-        //private Color[] colors;
         private String title;
         private int colorStackpointer;
 
+    /**
+     * constructor
+     * @param values double array
+     * @param labels String array
+     * @param title title of the chart
+     */
         public ChartController(double[] values, String[] labels, String title) {
             this.labels = labels;
             this.values = values;
             this.title = title;
         }
 
-        public void paintComponent(Graphics g) {
+    /**
+     * method to draw or show a bar chart
+     * @param g Graphics object
+     */
+    public void paintComponent(Graphics g) {
             super.paintComponent(g);
             if (values == null || values.length == 0) {
                 return;
@@ -85,7 +94,11 @@ public class ChartController extends JPanel {
             }
         }
 
-        private Color getNextColor(){
+    /**
+     * method to get a random color
+     * @return the new color
+     */
+    private Color getNextColor(){
             Random rand = new Random();
             float r = rand.nextFloat();
             float g = rand.nextFloat();

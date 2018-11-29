@@ -2,5 +2,5 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 
 <properties>
-    <entry key="MedizinFile">./src/main/resource/Textdatei/medizin.csv</entry>
+    <entry key="MedizinFile">./src/main/resources/Textdatei/medizin.csv</entry>
 </properties>
