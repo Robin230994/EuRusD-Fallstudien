@@ -147,7 +147,7 @@ public class FrequencySteadyTable {
     /**
      * method that sorts our array with a simple bubble sort
      * @param vals the array that will be sorted
-     * @return the sorted array 
+     * @return the sorted array
      */
     public static double[] sort(double[] vals){
         double temp;
