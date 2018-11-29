@@ -9,11 +9,19 @@ public class FrequencySteadyTable {
     private String[] frequencies;
     private double[] frequencyVals;
 
+    /**
+     * constructor
+     * @param classWidth classwidth that was calculated before
+     * @param values double array which contains the data
+     */
     public FrequencySteadyTable(double classWidth, double[] values){
         this.classWidth = classWidth;
         this.values = values;
     }
 
+    /**
+     * method that generates our table
+     */
     public void generateTable(){
         values = sort(values);
         printhead();
@@ -61,6 +69,10 @@ public class FrequencySteadyTable {
         printClass(lowerBorder, upperBorder, cntLocal, cntGlobal, cntVals);
     }
 
+    /**
+     * get methods
+     * @return the selected attribute
+     */
     public String[] getFrequencies(){
         return frequencies;
     }
@@ -73,11 +85,22 @@ public class FrequencySteadyTable {
         return "[" + String.format("%.2f", lowerBorder) + ";" + String.format("%.2f", upperBorder) + "]";
     }
 
+    /**
+     * method that prints the formula into the console
+     * @param lowerBorder the lower border of the formula
+     * @param upperBorder the upper border of the formula
+     * @param cntLocal the local count of classes
+     * @param cntGlobal the global count of classes
+     * @param cntVals amount of values
+     */
     private void printClass(double lowerBorder, double upperBorder, int cntLocal, int cntGlobal, int cntVals){
         System.out.println( getClasslabel(lowerBorder, upperBorder) + " | " + cntLocal + " | " + cntLocal + "/"
                 + cntVals + " | " + cntGlobal + " | " + cntGlobal + "/" + cntVals);
     }
 
+    /**
+     * method that prints our formula head into the console
+     */
     private void printhead(){
         String header = "";
         for(int i = 0; i<HEAD.length; i++){
@@ -86,6 +109,11 @@ public class FrequencySteadyTable {
         System.out.println(header);
     }
 
+    /**
+     * method to clean our array
+     * @param vals the array that will be cleaned
+     * @return the cleaned array
+     */
     private double[] cleanArray(double[] vals){
         String s = "";
         for (double d: vals) {
@@ -100,6 +128,11 @@ public class FrequencySteadyTable {
         return vals;
     }
 
+    /**
+     * method to clean our array
+     * @param vals the array that will be cleaned
+     * @return the cleaned array
+     */
     private String[] cleanArray(String[] vals){
         String tmp = "";
         for (String s: vals) {
@@ -111,6 +144,11 @@ public class FrequencySteadyTable {
         return arr;
     }
 
+    /**
+     * method that sorts our array with a simple bubble sort
+     * @param vals the array that will be sorted
+     * @return the sorted array
+     */
     public static double[] sort(double[] vals){
         double temp;
         for(int i=1; i<vals.length; i++) {

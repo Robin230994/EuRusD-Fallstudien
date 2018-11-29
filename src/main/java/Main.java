@@ -378,7 +378,7 @@ public class Main {
     /**
      * method that switches between the possible operations
      * @param op operation code
-     * @param opName operation name 
+     * @param opName operation name
      */
     private void opMakeOperation(int op, String opName){
         String result;
