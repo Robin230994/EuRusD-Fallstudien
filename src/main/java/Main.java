@@ -1,3 +1,5 @@
+import Models.PropertiesModel;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -12,10 +14,8 @@ import java.util.Scanner;
 
 public class Main {
 
+    PropertiesModel propertiesModel;
     //CONSTANTS
-    //private static String FILE = "C:\\Users\\Kodiak\\Documents\\medizin.csv";
-    private static String file = "./src/main/resources/Textdatei/medizin.csv";
-    //private static String FILE = "/Users/louisadort/Desktop/Robin_Uni/EuRusD/medizin.csv";
     private String LINE = "-----------------------";
     private final String ERR_TABLE_NOT_LOADED = "Tabelle muss erst geladen werden!";
 
@@ -37,7 +37,14 @@ public class Main {
      * constructor
      */
     public Main() {
-        tr = new Tablereader(file);
+        try {
+            PropertiesModel.init("./properties.xml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        propertiesModel = new PropertiesModel();
+
+        tr = new Tablereader(propertiesModel.getFilepath());
     }
 
 
@@ -373,17 +380,7 @@ public class Main {
                 printTable();
 
                 break;
-
-            case 3:
-                System.out.println("Pfad = ");
-                String path = scanner.next();
-                if(path != ""){
-                    this.file = path;
-                }else {
-                    System.out.println("Pfad ungültig; wurde nicht geändert!");
-                }
-                break;
-
+            
             case 4:
                 x = 1;
                 break;
