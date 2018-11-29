@@ -380,7 +380,7 @@ public class Main {
                 printTable();
 
                 break;
-            
+
             case 4:
                 x = 1;
                 break;

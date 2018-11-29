@@ -1,2 +1,4 @@
 # EuRusD-Fallstudien
-Fallstudien werden hier abgelegt
+Fallstudie 1:
+Ausführung des Programms:
+1) 
