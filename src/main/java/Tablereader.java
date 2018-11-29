@@ -21,6 +21,10 @@ public class Tablereader {
     private double maxBD0 = 0.0;
     private double minBD12 = 0.0;
     private double maxBD12 = 0.0;
+    private double minT0 = 0.0;
+    private double maxT0 = 0.0;
+    private double minT12 = 0.0;
+    private double maxT12 = 0.0;
     private double minDif = 0.0;
     private double maxDif = 0.0;
     private int anzZero = 0;
@@ -40,6 +44,8 @@ public class Tablereader {
     private final int GEWICHT = 2;
     private final int BG = 3;
     private final int ALTER = 4;
+    private final int T0 = 5;
+    private final int T12 = 6;
     private final int BD0 = 7;
     private final int BD12 = 8;
     private final int DZ = 9;
@@ -160,6 +166,34 @@ public class Tablereader {
                             }
                             break;
 
+                        case T0:
+                            valToDouble = Double.valueOf(valueWithoutComma);
+                            if (count == firstValue) {
+                                minT0 = valToDouble;
+                                maxT0 = valToDouble;
+                            }
+                            if (valToDouble > maxT0) {
+                                maxT0 = valToDouble;
+                            }
+                            if (valToDouble < minT0) {
+                                minT0 = valToDouble;
+                            }
+                            break;
+
+                        case T12:
+                            valToDouble = Double.valueOf(valueWithoutComma);
+                            if (count == firstValue) {
+                                minT12 = valToDouble;
+                                maxT12 = valToDouble;
+                            }
+                            if (valToDouble > maxT12) {
+                                maxT12 = valToDouble;
+                            }
+                            if (valToDouble < minT12) {
+                                minT12 = valToDouble;
+                            }
+                            break;
+
                         case DZ:
                             if (val.equals("1")) {
                                 anzDZ1++;
@@ -263,6 +297,22 @@ public class Tablereader {
 
     public double getMaxBD12() {
         return this.maxBD12;
+    }
+
+    public double getMinT12() {
+        return this.minT12;
+    }
+
+    public double getMaxT12() {
+        return this.maxT12;
+    }
+
+    public double getMinT0() {
+        return this.minT0;
+    }
+
+    public double getMaxT0() {
+        return this.maxT0;
     }
 
     public double getMinDif() {

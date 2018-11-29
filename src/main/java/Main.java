@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -19,6 +18,15 @@ public class Main {
     private String LINE = "-----------------------";
     private final String ERR_TABLE_NOT_LOADED = "Tabelle muss erst geladen werden!";
 
+    private final int OP_ARI_MEAN = 0;
+    private final int OP_MEDIAN = 1;
+    private final int OP_SPAN = 2;
+    private final int OP_MODE = 3;
+    private final int OP_SPREAD = 4;
+    private final int OP_STD_DEV = 5;
+    private final int OP_QUARTILE = 6;
+    private final int OP_CLASS_W = 7;
+
     //VARIABLES
     private String[] head;
     private String[][] content;
@@ -29,7 +37,7 @@ public class Main {
     private int selection = 0;
     private String[] tmp;
     private Core core = new Core();
-    private final String STEADY_DATA = "GEWICHT,ALTER,BD0,BD12,DIFF";
+    private final String STEADY_DATA = "GEWICHT,ALTER,T0,T12,BD0,BD12,DIFF";
     private final String DISCREETDATA = "GESCHLECHT,BG,DZ";
 
 
@@ -60,7 +68,7 @@ public class Main {
             while (x == 0) {
 
                 System.out.println("Bitte Eingabe machen:");
-                System.out.println("[1] Tabellenoptionen");
+                System.out.println("[1] Tabelle ausgeben");
                 System.out.println("[2] Arithmetisches Mittel");
                 System.out.println("[3] Median");
                 System.out.println("[4] Spannweite");
@@ -71,8 +79,7 @@ public class Main {
                 System.out.println("[9] Klassenbreite");
                 System.out.println("[0] Beenden");
                 System.out.println("Selection: ");
-                int selection = scanner.nextInt();
-
+                String selection = scanner.next();
                 x = mainSwitcher(selection);
             }
 
@@ -83,65 +90,65 @@ public class Main {
      * @param selection the user input that was given
      * @return the x variable -> x = 1 the menu will close
      */
-    private int mainSwitcher(int selection){
+    private int mainSwitcher(String selection){
         int x = 0;
         switch (selection) {
 
-            case 1:
-                tableOptions();
+            case "1":
+                printTable();
                 break;
 
-            case 2:
+            case "2":
                 if (tableIsNotLoaded())
                     break;
 
-                opArithmeticMean();
+                opMakeOperation(OP_ARI_MEAN, "Arithmetisches Mittel");
                 break;
 
-            case 3:
+            case "3":
                 if (tableIsNotLoaded())
                     break;
-                opMedian();
+                opMakeOperation(OP_MEDIAN, "Median");
                 break;
 
-            case 4:
+            case "4":
                 if (tableIsNotLoaded())
                     break;
-               opSpanRange();
+                opMakeOperation(OP_SPAN, "Spannweite");
                 break;
 
-            case 5:
+            case "5":
                 if (tableIsNotLoaded())
                     break;
-                opMode();
+                opMakeOperation(OP_MODE, "Modus");
                 break;
 
-            case 6:
+            case "6":
                 if (tableIsNotLoaded())
                     break;
-                opSpread();
+                opMakeOperation(OP_SPREAD, "Streuung");
                 break;
 
 
-            case 7:
+            case "7":
                 if (tableIsNotLoaded())
                     break;
-                opStandardDeviation();
+                opMakeOperation(OP_STD_DEV, "Standartabweichung");
                 break;
 
-            case 8:
+            case "8":
                 if (tableIsNotLoaded())
                     break;
-                opQuartile();
+                opMakeOperation(OP_QUARTILE, "Quartile");
                 break;
 
-            case 9:
+            case "9":
                 if (tableIsNotLoaded())
                     break;
                 chooseDataType();
                 break;
 
-            case 0:
+            case "0":
                 x = 1;
                 break;
         }
@@ -250,19 +257,20 @@ public class Main {
                 x = 1;
                 break;
         }
-        vals = tb.getRow(classifcation);
-        fdt = new FrequencyDiscreetTable(vals);
-        fdt.generateTable(maxElements);
+        if(x!=1) {
+            vals = tb.getRow(classifcation);
+            fdt = new FrequencyDiscreetTable(vals);
+            fdt.generateTable(maxElements);
 
-        System.out.println("Möchten Sie die Klassen graphisch dargestellt bekommen?");
-        System.out.println("Ja(1) | Nein(2)");
-        String input = scanner.nextLine();
-        if(input.equals("1")){
-            String[] labels = fdt.getdata();
-            double[] values = fdt.getrelativCount();
-            showBarChart(head[classifcation], labels, values);
+            System.out.println("Möchten Sie die Klassen graphisch dargestellt bekommen?");
+            System.out.println("Ja(1) | Nein(2)");
+            String input = scanner.nextLine();
+            if (input.equals("1")) {
+                String[] labels = fdt.getdata();
+                double[] values = fdt.getrelativCount();
+                showBarChart(head[classifcation], labels, values);
+            }
         }
-
         return x;
     }
 
@@ -290,14 +298,21 @@ public class Main {
                 break;
 
             case 3:
-                classification = 6;
+                classification = 4;
                 break;
-
             case 4:
-                classification = 7;
+                classification = 5;
                 break;
 
             case 5:
+                classification = 6;
+                break;
+
+            case 6:
+                classification = 7;
+                break;
+
+            case 7:
                 classification = 9;
                 break;
 
@@ -311,24 +326,6 @@ public class Main {
         }
 
         return x;
-    }
-
-    /**
-     * method that shows a table menu after table options has been called in the menu before
-     */
-    private void tableOptions(){
-        int x = 0;
-        while (x == 0) {
-            System.out.println("Bitte Eingabe machen:");
-            System.out.println("[1] Tabelle einlesen");
-            System.out.println("[2] Tabelle ausgeben");
-            System.out.println("[3] Tabellenpfad bestimmen");
-            System.out.println("[4] Zurück");
-            System.out.println("Selection: ");
-            int selection = scanner.nextInt();
-
-            x = scTableOptions(selection);
-        }
     }
 
     /**
@@ -352,58 +349,76 @@ public class Main {
         return amount;
     }
 
-    /**
-     * method that calls a different method depending on what the user has typed in in the table options menu
-     * @param selection the input the user has given
-     * @return the x variable -> x = 1 the menu will close
-     */
-    private int scTableOptions(int selection){
-        int x = 0;
-        switch (selection) {
-
-            case 1:
-                System.out.println("Tabelle wird eingelesen...");
-                readTable();
-                break;
-
-            case 2:
-                if (tableIsNotLoaded())
-                    break;
-                System.out.println("Tabelle wird ausgegeben...");
-                printTable();
-
-                break;
-
-            case 3:
-                System.out.println("Pfad = ");
-                String path = scanner.next();
-                if(path != ""){
-                    this.file = path;
-                }else {
-                    System.out.println("Pfad ungültig; wurde nicht geändert!");
-                }
-                break;
-
-            case 4:
-                x = 1;
-                break;
+    private String[] getRows(){
+        String[] arr;
+        System.out.println("Spalte = ");
+        String selection = scanner.next();
+        if (selection.length() > 1) {
+            arr = selection.split(",");
+        }else{
+            arr = new String[1];
+            arr[0] = selection;
         }
-        return x;
+        return arr;
     }
 
+    private void opMakeOperation(int op, String opName){
+        String result;
+        String[] arr = getRows();
+        System.out.println(LINE);
+        System.out.println("Option: " + opName);
+        for (String val:arr) {
+            result = null;
+            if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
+                System.out.println("Spalte: " + this.head[Integer.valueOf(val)]);
+            tmp = tb.getRow(Integer.valueOf(val));
+            if(op == OP_ARI_MEAN){
+                if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
+                    result = String.valueOf(core.arithmeticMean(tmp));
+            }else if(op == OP_SPAN){
+                if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
+                    result = String.valueOf(core.spanRange(tmp));
+            }else if(op == OP_SPREAD){
+                if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
+                    result = String.valueOf(core.var(tmp));
+            }else if(op == OP_MEDIAN){
+                if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
+                    result = String.valueOf(core.median(tmp));
+            }else if(op == OP_MODE){
+                result = core.mode(tmp);
+            }else if(op == OP_STD_DEV){
+                if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
+                    result = String.valueOf(core.stddv(tmp));
+            }else if(op == OP_QUARTILE){
+                if(STEADY_DATA.contains(this.head[Integer.valueOf(val)])) {
+                    int amountdecimal = setDecimal();
+                    double classWidth = classWidth(Integer.valueOf(val), amountdecimal);
+                    result = String.valueOf(core.quartile(tmp, classWidth));
+                }
+            }
+            if(STEADY_DATA.contains(this.head[Integer.valueOf(val)]))
+                System.out.println("Ergebnis: " + result);
+
+        }
+        System.out.println(LINE);
+    }
     /**
      * method that calls the median method in our Core class
      */
     private void opMedian(){
         Double result;
-        System.out.println("Spalte = ");
-        selection = scanner.nextInt();
-        System.out.println("-----------------------");
-        System.out.println("Spalte: " + this.head[selection]);
-        tmp = tb.getRow(selection);
-        result = core.median(tmp);
-        System.out.println("Ergebnis: " + result);
-        System.out.println("-----------------------");
+        String[] arr = getRows();
+        System.out.println(LINE);
+        System.out.println("Option: Median");
+        for (String val:arr) {
+            if(STEADY_DATA.contains(this.head[Integer.valueOf(val)])) {
+                System.out.println("Spalte: " + this.head[Integer.valueOf(val)]);
+                tmp = tb.getRow(Integer.valueOf(val));
+                result = core.median(tmp);
+                System.out.println("Ergebnis: " + result);
+            }
+        }
+        System.out.println(LINE);
     }
 
     /**
@@ -411,14 +426,18 @@ public class Main {
      */
     private void opArithmeticMean(){
         Double result;
-        System.out.println("Spalte = ");
-        selection = scanner.nextInt();
+        String[] arr = getRows();
         System.out.println(LINE);
-        System.out.println("Wahl: " + this.head[selection]);
-        System.out.println("Option: Artithmetisches Mittel");
-        tmp = tb.getRow(selection);
-        result = core.arithmeticMean(tmp);
-        System.out.println("Ergebnis: " + result);
+        System.out.println("Option: Arithmetisches Mittel");
+        for (String val:arr) {
+            if (STEADY_DATA.contains(this.head[Integer.valueOf(val)])) {
+
+                System.out.println("Spalte: " + this.head[Integer.valueOf(val)]);
+                tmp = tb.getRow(Integer.valueOf(val));
+                result = core.arithmeticMean(tmp);
+                System.out.println("Ergebnis: " + result);
+            }
+        }
         System.out.println(LINE);
     }
 
@@ -429,10 +448,10 @@ public class Main {
         Double result;
         System.out.println("Spalte = ");
         selection = scanner.nextInt();
-        System.out.println("Wahl: " + this.head[selection]);
         if(STEADY_DATA.contains(this.head[selection])) {
             System.out.println(LINE);
             System.out.println("Option: Spannweite");
+            System.out.println("Spalte: " + this.head[selection]);
             tmp = tb.getRow(selection);
             result = core.spanRange(tmp);
             System.out.println("Ergebnis: " + result);
@@ -450,13 +469,13 @@ public class Main {
         Double result;
         System.out.println("Spalte = ");
         selection = scanner.nextInt();
-        System.out.println("Wahl: " + this.head[selection]);
-            System.out.println(LINE);
-            System.out.println("Option: Streuung");
-            tmp = tb.getRow(selection);
-            result = core.var(tmp);
-            System.out.println("Ergebnis: " + result);
-            System.out.println(LINE);
+        System.out.println(LINE);
+        System.out.println("Option: Streuung");
+        System.out.println("Spalte: " + this.head[selection]);
+        tmp = tb.getRow(selection);
+        result = core.var(tmp);
+        System.out.println("Ergebnis: " + result);
+        System.out.println(LINE);
 
     }
 
@@ -468,9 +487,9 @@ public class Main {
         Double result;
         System.out.println("Spalte = ");
         selection = scanner.nextInt();
-        System.out.println("Wahl: " + this.head[selection]);
         System.out.println(LINE);
         System.out.println("Option: Standartabweichung");
+        System.out.println("Spalte: " + this.head[selection]);
         tmp = tb.getRow(selection);
         result = core.stddv(tmp);
         System.out.println("Ergebnis: " + result);
@@ -484,18 +503,13 @@ public class Main {
     //Quartile
     private void opQuartile() {
         Double result;
-        //int lowerQuant, upperQuant;
         System.out.println("Spalte = ");
         int row = scanner.nextInt();
         int amountdecimal = setDecimal();
         double classWidth = classWidth(row, amountdecimal);
-        //System.out.println("Unteres Quartil = ");
-        //lowerQuant = scanner.nextInt();
-        //System.out.println("Oberes Quartil = ");
-        //upperQuant = scanner.nextInt();
-        System.out.println("Wahl: " + this.head[row]);
         System.out.println(LINE);
         System.out.println("Option: AlphaQuantile");
+        System.out.println("Spalte: " + this.head[row]);
         tmp = tb.getRow(row);
         result = core.quartile(tmp, classWidth);
         System.out.println("Ergebnis: " + result);
@@ -510,17 +524,14 @@ public class Main {
         String result;
         System.out.println("Spalte = ");
         selection = scanner.nextInt();
-        System.out.println("Wahl: " + this.head[selection]);
-        if(DISCREETDATA.contains(this.head[selection])) {
             System.out.println(LINE);
             System.out.println("Option: Modus");
+            System.out.println("Spalte: " + this.head[selection]);
             tmp = tb.getRow(selection);
             result = core.mode(tmp);
             System.out.println("Ergebnis: " + result);
             System.out.println(LINE);
-        } else {
-            System.out.println("Nur diskrete Daten sind für den Modus zugelassen!");
-        }
+
     }
 
     /**
@@ -552,6 +563,12 @@ public class Main {
         } else if(classifcation == 3) {
             minValue = tr.getMinAge();
             maxValue = tr.getMaxAge();
+        } else if(classifcation == 4) {
+            minValue = tr.getMinT0();
+            maxValue = tr.getMaxT0();
+        } else if(classifcation == 5) {
+            minValue = tr.getMinT12();
+            maxValue = tr.getMaxT12();
         } else if(classifcation == 6) {
             minValue = tr.getMinBD0();
             maxValue = tr.getMaxBD0();
@@ -630,6 +647,7 @@ public class Main {
         tb = new Table();
         try {
             tb = tr.read();
+            System.out.println("Tabelle wurde erfolgreich eingelesen!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -642,21 +660,24 @@ public class Main {
      * method that displays the table in the console
      */
     private void printTable(){
-        String header = "";
-        String conLine  = "";
+        if (!tableIsNotLoaded()) {
+            System.out.println("Tabelle wird ausgegeben...");
+            String header = "";
+            String conLine = "";
 
-        for(int i = 0; i<head.length; i++){
-            header +=head[i] + " | ";
-        }
-        System.out.println(header);
-
-        for(int i = 0; i<content.length; i++){
-            String[] tmp = content[i];
-            conLine  = "";
-            for(int k = 0; k<tmp.length; k++){
-                conLine+= tmp[k] + " | ";
+            for (int i = 0; i < head.length; i++) {
+                header += head[i] + " | ";
             }
-            System.out.println(conLine);
+            System.out.println(header);
+
+            for (int i = 0; i < content.length; i++) {
+                String[] tmp = content[i];
+                conLine = "";
+                for (int k = 0; k < tmp.length; k++) {
+                    conLine += tmp[k] + " | ";
+                }
+                System.out.println(conLine);
+            }
         }
     }
 
