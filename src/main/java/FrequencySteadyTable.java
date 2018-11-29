@@ -23,7 +23,8 @@ public class FrequencySteadyTable {
         int freqCnt = 0;
         float ratio;
         int freqWidth;
-        double freqW = (values[cntVals-1] - values[0])/classWidth;  // Highest Value - lowest value divided by classwidht
+        double freqW = values[cntVals-1] - values[0];
+        freqW = freqW/classWidth;  // Highest Value - lowest value divided by classwidht
         DecimalFormat df = new DecimalFormat("#");          //
         freqW = Double.valueOf(df.format(freqW));                   // Need to round because of arraysize
         freqWidth = (int) freqW;                                    // (4,99 would be 4 instead of 5)
