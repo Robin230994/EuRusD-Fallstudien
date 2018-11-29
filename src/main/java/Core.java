@@ -1,5 +1,10 @@
 public class Core {
 
+    /**
+     * method to calculate the arithmetic mean for some column of our table
+     * @param vals the String array which contains the data to calculate with
+     * @return the arithmetic mean
+     */
     public double arithmeticMean(String[] vals) {
         ArrayConverter converter = new ArrayConverter();
         double[] arr = converter.makeDouble(vals);
@@ -14,6 +19,11 @@ public class Core {
     }
 
 
+    /**
+     * method to calculate the median for some column of our table
+     * @param arr the String array which contains the data to calculate with
+     * @return the median
+     */
     public double median(String[] arr){
         double result;
         int length;
@@ -57,6 +67,11 @@ public class Core {
         return  result;
     }
 
+    /**
+     * method to calculate the span range for some column of our table
+     * @param vals the String array which contains the data to calculate with
+     * @return the span range 
+     */
     public double spanRange(String[] vals) {
         ArrayConverter converter = new ArrayConverter();
         double span = 0.0;
