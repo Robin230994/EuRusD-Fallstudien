@@ -137,7 +137,7 @@ public class Core {
      * method to calculate the quartile for some column of our table
      * @param var the String array which contains the data
      * @param classWidth the classwidth you calculated before
-     * @return the quartile 
+     * @return the quartile
      */
     public double quartile(String[] var, double classWidth) { //, int lowerPercent, int upperPercent
 

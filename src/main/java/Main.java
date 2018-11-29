@@ -358,6 +358,10 @@ public class Main {
         return amount;
     }
 
+    /**
+     * method that asks the user which row should be calculated with
+     * @return the row or rows
+     */
     private String[] getRows(){
         String[] arr;
         System.out.println("Spalte = ");
@@ -371,6 +375,11 @@ public class Main {
         return arr;
     }
 
+    /**
+     * method that switches between the possible operations
+     * @param op operation code
+     * @param opName operation name 
+     */
     private void opMakeOperation(int op, String opName){
         String result;
         String[] arr = getRows();
