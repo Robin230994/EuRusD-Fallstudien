@@ -17,5 +17,5 @@ Anmerkung: Spalten werden nicht mit Namen, sondern durch die jeweiligen Nummern 
     Für stetische Daten nach Eingabe der Spaltennummer, die Anzahl der gewünschten Nachkommastellen (1-5) angeben. ACHTUNG: Programm rechnet mit angegebenen Nachkommastellen. Allerdings erfolgt die Ausgabe des Ergebnises aufgrund der Werte immer nur mit maximal 3 Nachkommastellen!
     Danach falls gewünscht:
     1 -> Grafik wird geöffnet und Bar Chart wird angezeigt
-    2 -> Keine Rafik wird geöffnet.
+    2 -> Keine Grafik wird geöffnet.
 
