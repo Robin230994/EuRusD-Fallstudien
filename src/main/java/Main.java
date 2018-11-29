@@ -49,7 +49,7 @@ public class Main {
      */
     public Main() {
         try {
-            PropertiesModel.init("./properties.xml");
+            PropertiesModel.init("./src/main/resources/Properties/properties.xml");
         } catch (Exception e) {
             e.printStackTrace();
         }
