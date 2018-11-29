@@ -27,7 +27,7 @@ public class PropertiesModel {
 
     /**
      * get method to get the file path
-     * @return the filepath 
+     * @return the filepath
      */
     public String getFilepath() {
         return filepath;
